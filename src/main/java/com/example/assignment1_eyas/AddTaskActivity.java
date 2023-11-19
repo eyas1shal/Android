@@ -14,8 +14,7 @@ import java.util.ArrayList;
 public class AddTaskActivity extends AppCompatActivity {
 
     private EditText name,date,note;
-    private Button add;
-    private Button cancel;
+    private Button add,cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,39 +33,13 @@ public class AddTaskActivity extends AppCompatActivity {
             intent1.putExtra("reply","n");
             startActivity(intent1);
         });
-/*
-        add.setOnClickListener(v -> {
-            if (!name.getText().toString().equals("")) {
-                Task temp = new Task(
-                        name.getText().toString(),
-                        date.getText().toString(),
-                        note.getText().toString());
 
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("newTask", temp);
-                setResult(RESULT_OK, resultIntent);
-                finish();
-            } else {
-                name.setBackgroundColor(Color.RED);
-            }
-        });
-
-
- */
 
         add.setOnClickListener(v->{
-            //ArrayList<Task> t= MainActivity.tasks;
-
             if(!name.getText().toString().equals("")) {
                Task temp = new Task( name.getText().toString(),
                        date.getText().toString(),
                        note.getText().toString());
-               MainActivity.ts=temp;
-              // MainActivity.tasks.add(temp);
-               // MainActivity.addtask(temp);
-               // t.add(temp);
-             //   MainActivity.tasks=t;
-
                Intent intent2 = new Intent(AddTaskActivity.this, MainActivity.class);
                intent2.putExtra("reply","y");
                 intent2.putExtra("ts_name",name.getText());

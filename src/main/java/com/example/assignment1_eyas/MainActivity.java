@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     ArrayAdapter<Task> listAdapter;
     public List<Task> tasks;
-    public static Task ts;
     public static final String DATA = "DATA";
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -41,20 +40,14 @@ public class MainActivity extends AppCompatActivity {
         try {
             Intent state = getIntent();
             if (state != null && state.getExtras().get("reply").equals("y")) {
-                // tasks.add(ts);
-                //save();
                 addAndSave(state.getExtras().get("ts_name").toString()
                         , state.getExtras().get("ts_date").toString(),
                         state.getExtras().get("ts_note").toString());
             }
             load();
-            // save1();
-            //else
-            //     tasks= new ArrayList<Task>();
-            //save();
+
         } catch (Exception e) {
-            //tasks= new ArrayList<Task>();
-            //  save();
+            e.printStackTrace();
         }
         try{
             Intent due = getIntent();
@@ -64,8 +57,19 @@ public class MainActivity extends AppCompatActivity {
             tasks.get(p).setStatus((byte) s);
 
             save();}
-           // load();
         }catch (Exception x){
+            x.printStackTrace();
+        }
+        try {
+            Intent delete=getIntent();
+            if(delete!=null && !delete.getExtras().get("del").equals("")){
+                int p = (int) delete.getExtras().get("pos");
+                delAndSave(p);
+                load();
+            }
+
+
+        }catch (Exception ex){
 
         }
 
@@ -95,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
         save();
     }
 
+    private void delAndSave(int pos){
+        tasks.remove(pos);
+        save();
+    }
+
 
     public void load() {
 
@@ -109,8 +118,6 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < tasks1.length; i++) {
                 tasks.add(tasks1[i]);
             }
-        } else {
-            //txtResults.setText("No data found");
         }
     }
 
@@ -125,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
     private void setupSharedPrefs() {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = prefs.edit();
-
     }
 
 }

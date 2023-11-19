@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 public class TasksActivity extends AppCompatActivity {
 
-    TextView tx_name,tx_date,tx_note;
-    Switch s_switch;
-    Button back;
+    private TextView tx_name,tx_date,tx_note;
+    private Switch s_switch;
+    private Button back;
+    private FloatingActionButton del;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +28,8 @@ public class TasksActivity extends AppCompatActivity {
         tx_date = findViewById(R.id.tx_date);
         tx_note = findViewById(R.id.tx_note);
         s_switch = findViewById(R.id.tx_switch);
-        //tx.setBackgroundColor(Color.parseColor("#FFFAB0"));
+        del=findViewById(R.id.del);
+
         String name =(String) intent.getExtras().get("task_name");
         String date =(String) intent.getExtras().get("task_date");
         String note =(String) intent.getExtras().get("task_note");
@@ -54,6 +58,13 @@ public class TasksActivity extends AppCompatActivity {
             intent1.putExtra("status",done);
             intent1.putExtra("pos",pos);
             startActivity(intent1);
+        });
+
+        del.setOnClickListener(x->{
+            Intent intent2=new Intent(TasksActivity.this,MainActivity.class);
+            intent2.putExtra("del","y");
+            intent2.putExtra("pos",pos);
+            startActivity(intent2);
         });
 
     }
