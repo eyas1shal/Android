@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
             save();}
         }catch (Exception x){
-            x.printStackTrace();
+            //x.printStackTrace();
         }
         try {
             Intent delete=getIntent();
