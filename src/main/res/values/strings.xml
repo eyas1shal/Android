@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">assignment1_eyas</string>
+    <string name="app_name">Manage your Tasks!</string>
     <string name="title_activity_tasks">TasksActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_add">AddActivity</string>
